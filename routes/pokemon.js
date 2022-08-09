@@ -21,7 +21,7 @@ app.get('/:id', async (req, res) => {
 
   }catch(error){
     console.log(error)
-    res.status(error.response.status).send(error.response.data)
+    res.status(error.response.status).send(error.response.statusText)
   }
 })
 
