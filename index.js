@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const port = 5000
-const axios = require('axios')
 const gotRoutes = require('./routes/game-of-thrones')
 const pokemonRoutes = require('./routes/pokemon')
 

@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const axios = require('axios');
 
-// `https://pokeapi.co/api/v2/pokemon/${id}`
 app.get('/', async (req, res) => {
   const response = await axios.get(' https://pokeapi.co/api/v2/pokemon?limit=151&offset=0')
 
@@ -15,14 +14,14 @@ app.get('/:id', async (req, res) => {
 
   const paramsId = Number(req.params.id)
 
-  if(0 < paramsId <= 151){
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${req.params.id}`)
+  try{
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${paramsId}`)
     const result = response.data
-    console.log(result)
-    console.log(typeof(paramsId))
     res.json(result)
-  }else{
-    res.status(404).send('Not found')
+
+  }catch(error){
+    console.log(error)
+    res.status(error.response.status).send(error.response.data)
   }
 })
 
